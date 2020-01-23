@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+
+
+
+<head>
+	<link rel="stylesheet" media="all" href="/assets/application-d12397cbc3a266ce5a99f7b588223090c55ca04a439953bb5f9304395de93fc3.css" data-turbolinks-track="reload">
+	<script src="/assets/application-4e370d3723b6f204426a9414077d365ea07814cce5619ae24fb7e581988f19ed.js" data-turbolinks-track="reload"></script>
+	<title>WebCampBackendNew</title>
+	<meta name="csrf-param" content="authenticity_token">
+	<meta name="csrf-token" content="hm0H87+dtmtSvOHESi5YjXaOQVefzSsSGWq+PgcWktF4e1lmM6e0kx4ogwk9Gs53axLXLrG8gvTk8pCkD3TZkg==">
+</head>
+
+<body>
+	<h1>Books</h1>
+	<table>
+		<thead>
+			<tr>
+				<th>Title</th>
+				<th>Body</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @books.each do |book| %>
+				<tr>
+					<td><%= book.title %> </td>
+					<td><%= book.body %></td>
+					<td><%= link_to "Show", book_path(book) %>
+					</td>
+					<td><%= link_to "Edit", edit_book_path(book) %></td>
+					<td><%= link_to "Destroy", book_path(book), method: :delete %></td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+
+	<h2>New Book</h2>
+	<%= form_for(@book) do |f| %>
+		<% if @book.errors.any? %>
+			<ul>
+				<% @book.errors.full_messages.each do |message| %>
+				<li><%= message %></li>
+				<% end %>
+			</ul>
+		<% end %>
+		<p>Title</p>
+		<%= f.text_field :title %>
+
+		<p>Body</p>
+		<%= f.text_field :body %>
+
+		<%= f.submit "Create Book" %>
+
+	<% end %>
+
+</body>
+</html>
